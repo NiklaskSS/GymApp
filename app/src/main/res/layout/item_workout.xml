@@ -29,6 +29,16 @@
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/black" />
 
+        <!-- ADDED Weight TextView -->
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Weight: 100 kg"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textStyle="bold"/>
+
         <TextView
             android:id="@+id/repsTextView"
             android:layout_width="wrap_content"

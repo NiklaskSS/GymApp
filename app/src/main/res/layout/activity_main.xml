@@ -33,6 +33,21 @@
             android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- ADDED Weight Input Field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/weightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weight (e.g., 100 kg or 225 lbs)"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,14 +71,11 @@
         android:padding="12dp"
         app:cornerRadius="8dp"/>
 
-    <!-- REMOVED the old workout history TextView and ScrollView -->
-    <!-- ADDED a spacer to push new buttons to the bottom -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- ADDED navigation buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

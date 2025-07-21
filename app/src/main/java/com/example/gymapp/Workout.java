@@ -3,23 +3,23 @@ package com.example.gymapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 public class Workout implements Parcelable {
     private String exerciseName;
     private String reps;
+    private String weight;
     private String date;
 
-    public Workout(String exerciseName, String reps, String date) {
+    public Workout(String exerciseName, String reps, String weight, String date) {
         this.exerciseName = exerciseName;
         this.reps = reps;
+        this.weight = weight;
         this.date = date;
     }
-
-
 
     protected Workout(Parcel in) {
         exerciseName = in.readString();
         reps = in.readString();
+        weight = in.readString(); // ADDED
         date = in.readString();
     }
 
@@ -27,6 +27,7 @@ public class Workout implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(exerciseName);
         dest.writeString(reps);
+        dest.writeString(weight); // ADDED
         dest.writeString(date);
     }
 
@@ -55,6 +56,10 @@ public class Workout implements Parcelable {
 
     public String getReps() {
         return reps;
+    }
+
+    public String getWeight() { // ADDED
+        return weight;
     }
 
     public String getDate() {

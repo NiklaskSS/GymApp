@@ -21,11 +21,9 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText exerciseNameEditText, repsEditText;
+    private EditText exerciseNameEditText, repsEditText, weightEditText;
     private Button saveWorkoutButton, historyButton, creditsButton;
 
-    // --- IMPORTANT ---
-    // This MUST be declared as ArrayList, not List, for Parcelable to work correctly.
     private ArrayList<Workout> workoutList;
     private Gson gson;
 
@@ -37,28 +35,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize views
+
         exerciseNameEditText = findViewById(R.id.exerciseNameEditText);
         repsEditText = findViewById(R.id.repsEditText);
+        weightEditText = findViewById(R.id.weightEditText);
         saveWorkoutButton = findViewById(R.id.saveWorkoutButton);
         historyButton = findViewById(R.id.historyButton);
         creditsButton = findViewById(R.id.creditsButton);
 
         gson = new Gson();
-        loadWorkouts(); // Load saved workouts
+        loadWorkouts();
 
-        // Set click listener for the save button
         saveWorkoutButton.setOnClickListener(v -> saveWorkout());
 
-        // Set click listener for the history button
         historyButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            // This line now works because workoutList is an ArrayList<Workout>
             intent.putParcelableArrayListExtra("WORKOUT_LIST", workoutList);
             startActivity(intent);
         });
 
-        // Set click listener for the credits button
         creditsButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CreditsActivity.class);
             startActivity(intent);
@@ -68,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     private void loadWorkouts() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String json = prefs.getString(WORKOUT_LIST_KEY, null);
-        // This TypeToken also needs to be ArrayList
         Type type = new TypeToken<ArrayList<Workout>>() {}.getType();
         workoutList = gson.fromJson(json, type);
 
@@ -80,14 +74,15 @@ public class MainActivity extends AppCompatActivity {
     private void saveWorkout() {
         String exerciseName = exerciseNameEditText.getText().toString().trim();
         String reps = repsEditText.getText().toString().trim();
+        String weight = weightEditText.getText().toString().trim();
 
-        if (exerciseName.isEmpty() || reps.isEmpty()) {
+        if (exerciseName.isEmpty() || reps.isEmpty() || weight.isEmpty()) {
             Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
-        Workout newWorkout = new Workout(exerciseName, reps, currentDate);
+        Workout newWorkout = new Workout(exerciseName, reps, weight, currentDate);
         workoutList.add(0, newWorkout);
 
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -98,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         exerciseNameEditText.setText("");
         repsEditText.setText("");
+        weightEditText.setText(""); // ADDED
 
         Toast.makeText(this, "Workout Saved!", Toast.LENGTH_SHORT).show();
     }

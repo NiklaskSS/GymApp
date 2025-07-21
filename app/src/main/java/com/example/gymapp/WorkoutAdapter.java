@@ -29,6 +29,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         Workout workout = workoutList.get(position);
         holder.dateTextView.setText(workout.getDate());
         holder.exerciseNameTextView.setText(workout.getExerciseName());
+        holder.weightTextView.setText("Weight: " + workout.getWeight());
         holder.repsTextView.setText("Reps: " + workout.getReps());
     }
 
@@ -37,17 +38,18 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         return workoutList.size();
     }
 
-    // ViewHolder class to hold the views for each item
     public static class WorkoutViewHolder extends RecyclerView.ViewHolder {
         TextView dateTextView;
         TextView exerciseNameTextView;
         TextView repsTextView;
+        TextView weightTextView;
 
         public WorkoutViewHolder(@NonNull View itemView) {
             super(itemView);
             dateTextView = itemView.findViewById(R.id.dateTextView);
             exerciseNameTextView = itemView.findViewById(R.id.exerciseNameTextView);
             repsTextView = itemView.findViewById(R.id.repsTextView);
+            weightTextView = itemView.findViewById(R.id.weightTextView);
         }
     }
 }
