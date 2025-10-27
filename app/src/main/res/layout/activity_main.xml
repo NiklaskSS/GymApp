@@ -33,7 +33,6 @@
             android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- ADDED Weight Input Field -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,11 +80,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- ADDED Programs Button -->
+        <Button
+            android:id="@+id/programsButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Workout Programs"
+            android:padding="12dp"
+            app:cornerRadius="8dp" />
+
         <Button
             android:id="@+id/historyButton"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="View Workout History"
             android:padding="12dp"
             app:cornerRadius="8dp" />

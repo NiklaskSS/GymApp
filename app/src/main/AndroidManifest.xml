@@ -27,13 +27,27 @@
         <activity
             android:name=".HistoryActivity"
             android:label="Workout History"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
 
-        <!-- Credits Activity Declaration (This is the missing part) -->
+        <!-- Credits Activity Declaration -->
         <activity
             android:name=".CreditsActivity"
             android:label="Credits"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+
+        <!-- ADDED Program Activities -->
+        <activity
+            android:name=".ProgramsActivity"
+            android:label="Workout Programs"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProgramDetailActivity"
+            android:parentActivityName=".ProgramsActivity"
+            android:exported="false" />
 
     </application>
 

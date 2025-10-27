@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private EditText exerciseNameEditText, repsEditText, weightEditText;
-    private Button saveWorkoutButton, historyButton, creditsButton;
+    private Button saveWorkoutButton, historyButton, creditsButton, programsButton; // ADDED programsButton
 
     private ArrayList<Workout> workoutList;
     private Gson gson;
@@ -35,18 +36,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Initialize views
         exerciseNameEditText = findViewById(R.id.exerciseNameEditText);
         repsEditText = findViewById(R.id.repsEditText);
         weightEditText = findViewById(R.id.weightEditText);
         saveWorkoutButton = findViewById(R.id.saveWorkoutButton);
         historyButton = findViewById(R.id.historyButton);
         creditsButton = findViewById(R.id.creditsButton);
+        programsButton = findViewById(R.id.programsButton); // ADDED
 
         gson = new Gson();
         loadWorkouts();
 
         saveWorkoutButton.setOnClickListener(v -> saveWorkout());
+
+        // ADDED Programs Button Click Listener
+        programsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ProgramsActivity.class);
+            startActivity(intent);
+        });
 
         historyButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         exerciseNameEditText.setText("");
         repsEditText.setText("");
-        weightEditText.setText(""); // ADDED
+        weightEditText.setText("");
 
         Toast.makeText(this, "Workout Saved!", Toast.LENGTH_SHORT).show();
     }
